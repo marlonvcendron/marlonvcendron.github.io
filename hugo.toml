@@ -2,3 +2,20 @@ baseURL = 'https://marlonvcendron.github.io/'
 locale = 'en-us'
 title = 'Marlon Valmórbida Cendron'
 theme = 'theme_theme_theme'
+disableKinds = ['taxonomy', 'term']
+
+[menus]
+  [[menus.main]]
+    name = 'Home'
+    pageRef = '/'
+    weight = 10
+
+  [[menus.main]]
+    name = 'Posts'
+    pageRef = '/posts'
+    weight = 20
+
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = '0.146.0'
