@@ -1,7 +1,6 @@
 baseURL = 'https://marlonvcendron.github.io/'
 locale = 'en-us'
 title = 'Marlon Valmórbida Cendron'
-theme = 'theme_theme_theme'
 disableKinds = ['taxonomy', 'term']
 
 [menus]
