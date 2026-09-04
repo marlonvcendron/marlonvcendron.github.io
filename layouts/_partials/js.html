@@ -1,0 +1,17 @@
+{{ range slice "main" "canvas" }}
+  {{- with resources.Get (print "js/" . ".js") }}
+    {{- $opts := dict
+      "minify" (cond hugo.IsDevelopment false true)
+      "sourceMap" (cond hugo.IsDevelopment "linked" "none")
+    }}
+    {{- with . | js.Build $opts }}
+      {{- if hugo.IsDevelopment }}
+        <script src="{{ .RelPermalink }}"></script>
+      {{- else }}
+        {{- with . | fingerprint }}
+          <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>
+        {{- end }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}

@@ -13,5 +13,7 @@
   <footer>
     {{ partial "footer.html" . }}
   </footer>
+  <canvas id="canvas"></canvas>
 </body>
+{{ partialCached "js.html" . }}
 </html>
