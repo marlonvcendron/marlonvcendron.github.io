@@ -1,4 +1,9 @@
 header {
   border-bottom: 1px solid #222;
   margin-bottom: 1rem;
+  padding: 1rem 2rem;
+
+  /* h1 {
+    color: red;
+  } */
 }

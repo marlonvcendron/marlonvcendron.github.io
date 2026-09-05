@@ -1,14 +1,18 @@
+@import "fonts.css";
+
 @import "components/header.css";
 @import "components/footer.css";
 @import "components/canvas.css";
 
 body {
+  background-color: #efe9d9;
   color: #222;
-  font-family: sans-serif;
+  font-family: 'Menlo';
   line-height: 1.5;
   margin: 0;
   width: 100%;
   height: 100%;
+  isolation: isolate; /* Isolates from canvas effect */
 }
 
 main {
