@@ -29,7 +29,7 @@ class Band {
     this.start = this.#randomHeight()
     this.color = this.#randomColor()
     this.threshold = getConsistentRand('thr', [index])()
-    this.end = this.start + this.size
+    this.end = Math.min(this.start + this.size, height - 1)
   }
 
   draw = (view) => {
