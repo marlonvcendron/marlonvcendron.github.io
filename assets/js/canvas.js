@@ -1,65 +1,87 @@
+import { splitmix32, randomUInt, getConsistentRand } from "./random"
+
+const getWidthAndHeight = () => [document.documentElement.scrollWidth, document.documentElement.scrollHeight]
+
+let [width, height] = getWidthAndHeight()
+
 const canvas = document.getElementById('canvas')
+
 const ctx = canvas.getContext('2d')
+ctx.imageSmoothingEnabled = false
 
 const C = 0x049EBCFF
 const M = 0xED4A96FF
 const Y = 0xFCEA33FF
 const K = 0x000000FF
 
-const N_BANDS = 5
+const CMAP = [C, M, Y]
+
+const N_BANDS = 20
 const MAX_BAND_SIZE = 30
 
-const [width, height] = [canvas.width, canvas.height]
 
 const toIndex = (x, y) => 4 * (x + y * width)
 
-const randomUInt = (upperLimit) => Math.round(Math.random() * upperLimit)
-
-const randomHeight = () => randomUInt(height)
-
-const randomColor = () => {
-  const cmap = [C, M, Y]
-  return cmap[randomUInt(2)]
-}
-
 class Band {
-  constructor() {
-    this.size = randomUInt(MAX_BAND_SIZE)
-    this.start = randomHeight()
-    this.color = randomColor()
+  constructor(index) {
+    this.index = index
+    this.size = randomUInt({ limit: MAX_BAND_SIZE, rand: this.#randomByIndex('size') })
+    this.start = this.#randomHeight()
+    this.color = this.#randomColor()
+    this.threshold = getConsistentRand('thr', [index])()
     this.end = this.start + this.size
   }
 
-  draw(view, x, y) {
-    i = toIndex(x, y)
-    if (y >= this.start && y <= this.end) {
-      view.setUint32(i, this.color)
-    }
-  }
-}
+  draw = (view) => {
+    for (let x = 0; x < width; x++) {
+      for (let y = this.start; y <= this.end; y++) {
+        const i = toIndex(x, y)
 
+        const rand = getConsistentRand('draw_rand', [i, this.index])()
+        const meetsThreshold = rand > this.threshold
 
-const getImage = () => {
-  const imageData = ctx.createImageData(width, height)
-  const view = new DataView(imageData.data.buffer)
-
-  const bands = Array.from({ length: N_BANDS }, () => new Band())
-
-  console.log(bands)
-  for (let x = 0; x < width; x++) {
-    for (let y = 0; y < height; y++) {
-      i = toIndex(x, y)
-
-      for (band of bands) {
-        band.draw(view, x, y)
+        if (meetsThreshold) {
+          view.setUint32(i, this.color)
+        }
       }
     }
   }
 
+  #randomHeight = () => randomUInt({ limit: height, rand: this.#randomByIndex('height') })
+
+  #randomColor = () => CMAP[randomUInt({ limit: 2, rand: this.#randomByIndex('color') })]
+
+  #randomByIndex = (id) => getConsistentRand(id, [this.index])
+}
+
+const drawImage = () => {
+  const imageData = ctx.createImageData(width, height)
+  const view = new DataView(imageData.data.buffer)
+
+  const bands = Array.from({ length: N_BANDS }, (_, i) => new Band(i))
+  for (const band of bands) {
+    band.draw(view)
+  }
+
+
   return imageData
 }
 
+const update = () => {
+  const [newWidth, newHeight] = getWidthAndHeight()
+  width = newWidth; height = newHeight
+  canvas.setAttribute('width', width);
+  canvas.setAttribute('height', height);
 
-image = getImage()
-console.log(image)
-ctx.putImageData(image, 0, 0);
+  const image = drawImage()
+  ctx.putImageData(image, 0, 0);
+}
+
+let drawTimeout;
+window.onresize = () => {
+  const timeout = 200
+  clearTimeout(drawTimeout)
+  drawTimeout = setTimeout(update, timeout)
+}
+
+update()
