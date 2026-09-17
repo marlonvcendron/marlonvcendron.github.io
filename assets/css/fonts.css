@@ -2,3 +2,8 @@
   font-family: "Menlo";
   src: url("static/fonts/Menlo-Regular.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: "Avone";
+  src: url("static/fonts/Avone Series Display.otf") format("opentype");
+}
