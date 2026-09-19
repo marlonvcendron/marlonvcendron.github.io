@@ -1,18 +1,37 @@
 @import "fonts.css";
+@import "vars.css";
 
 @import "components/header.css";
 @import "components/footer.css";
 @import "components/canvas.css";
 
+/* TODO: maybe make as shadow, instead of coloring the text? */
+/* p {
+  font-family: 'Menlo';
+  color: transparent;
+  background:
+    linear-gradient(180deg, transparent 16%, var(--cyan) 18% 30%, transparent 32%) 0 -100%,
+    linear-gradient(180deg, transparent 66%, var(--yellow) 68% 76%, transparent 78%) 0 -100%,
+    linear-gradient(180deg, transparent 85%, var(--magenta) 86% 91%, transparent 93%) 0 -100%,
+    radial-gradient(circle, transparent 0 1px, var(--black) 1px) 0 0 / 5px 5px,
+    radial-gradient(circle, transparent 0 2px, var(--black) 2px) 0 0 / 3px 4px,
+    radial-gradient(circle, transparent 0 5px, var(--black) 5px) 0 0 / 2px 2px;
+  -webkit-background-clip: text;
+  background-clip: text;
+} */
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background-color: #efe9d9;
   color: #222;
-  font-family: 'Menlo';
+  font-family: "Menlo";
   line-height: 1.5;
-  margin: 0;
-  width: 100%;
-  height: 100%;
   isolation: isolate; /* Isolates from canvas effect */
+  position: relative;
 }
 
 main {
@@ -24,3 +43,22 @@ a {
   color: #00e;
   text-decoration: none;
 }
+
+h1 {
+  font-family: "Avone";
+  font-size: 6rem;
+  word-spacing: 100vw;
+  line-height: 1;
+  font-weight: 100;
+  /* text-transform: uppercase; */
+
+  color: transparent;
+
+  /* https://css-tricks.com/grainy-gradients/ */
+  background: linear-gradient(to bottom, #000000aa) 0 100% / 8rem 8rem,
+   url("static/svg/noise.svg");
+
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
