@@ -17,7 +17,6 @@ ctx.imageSmoothingEnabled = false
 const clearContext = () => ctx.clearRect(0, 0, canvas.width, canvas.height)
 
 const toggleButton = document.getElementById('disable-effects-button')
-const getEffectsEnabled = () => localStorage.getItem('ui.effects') === 'true'
 
 const CMAP = ['c', 'm', 'y']
 
@@ -114,6 +113,7 @@ window.onresize = () => {
   drawTimeout = setTimeout(update, timeout)
 }
 
+const getEffectsEnabled = () => localStorage.getItem('ui.effects') !== 'false'
 const toggleEffectsEnabled = () => {
   const to = !getEffectsEnabled()
   localStorage.setItem('ui.effects', JSON.stringify(to))
