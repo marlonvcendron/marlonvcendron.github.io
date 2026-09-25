@@ -1,4 +1,4 @@
-{{ range slice "main" "random" "perlin" "canvas" }}
+{{ range slice "main" "random" "perlin" "effectsController" "canvas" }}
   {{- with resources.Get (print "js/" . ".js") }}
     {{- $opts := dict
       "minify" (cond hugo.IsDevelopment false true)

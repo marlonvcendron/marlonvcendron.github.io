@@ -1,5 +1,6 @@
 @import "fonts.css";
 @import "vars.css";
+@import "effects.css";
 
 @import "components/header.css";
 @import "components/footer.css";
@@ -26,7 +27,7 @@ html, body {
 }
 
 body {
-  background-color: #efe9d9;
+  background-color: var(--warm-white);
   color: #222;
   font-family: "Menlo";
   line-height: 1.5;

@@ -1,5 +1,6 @@
 import { randomUInt, getConsistentRand } from './random'
 import { noise } from './perlin'
+import { setupEffectsController } from './effectsController'
 
 noise.seed(2666)
 
@@ -94,8 +95,8 @@ const drawImage = () => {
   return imageData
 }
 
-const update = () => {
-  if (!getEffectsEnabled()) return clearContext()
+const update = (enabled) => {
+  if (!enabled) return clearContext()
 
   const [newWidth, newHeight] = getWidthAndHeight()
   width = newWidth; height = newHeight
@@ -113,12 +114,4 @@ window.onresize = () => {
   drawTimeout = setTimeout(update, timeout)
 }
 
-const getEffectsEnabled = () => localStorage.getItem('ui.effects') !== 'false'
-const toggleEffectsEnabled = () => {
-  const to = !getEffectsEnabled()
-  localStorage.setItem('ui.effects', JSON.stringify(to))
-  update()
-}
-toggleButton.addEventListener('click', toggleEffectsEnabled)
-
-update()
+setupEffectsController(update)
