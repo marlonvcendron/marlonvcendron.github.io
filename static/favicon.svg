@@ -19,7 +19,7 @@
     fill="none"
     stroke="#000A1B"
     stroke-width="60"
-    stroke-dasharray="36 36"
+    stroke-dasharray="12 12"
     transform="rotate(-90 32 32)"
     clip-path="url(#circle)"
     filter="url(#misaligned)"
