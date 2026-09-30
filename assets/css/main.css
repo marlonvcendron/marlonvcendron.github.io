@@ -7,13 +7,17 @@
 @import "components/footer.css";
 @import "components/canvas.css";
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
 
 body {
+  background-image: url("static/img/texture.jpg");
   background-color: var(--warm-white);
+  background-blend-mode: multiply;
+
   color: #222;
   font-family: "Menlo";
   line-height: 1.5;
@@ -21,15 +25,17 @@ body {
   position: relative;
 }
 
-header > section, main, footer > section {
+header > section,
+main,
+footer > section {
   max-width: 50rem;
   margin: 0 auto;
 }
 
 a {
   color: var(--black);
-  filter: var(--misaligned-effect);
   text-decoration: none;
+  cursor: pointer;
 }
 
 h1 {

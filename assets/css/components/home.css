@@ -17,7 +17,7 @@
 
     /* https://css-tricks.com/grainy-gradients/ */
     background: linear-gradient(to bottom, #000000aa) 0 100% / 8rem 8rem,
-     url("static/svg/noise.svg");
+      url("static/svg/noise.svg");
 
     -webkit-background-clip: text;
     background-clip: text;
@@ -33,7 +33,11 @@
   width: 32px;
   height: 32px;
   margin: 0 auto;
-  background: repeating-conic-gradient(var(--black) 0 15deg, transparent 0 30deg) 100%;
+  background: repeating-conic-gradient(
+      var(--black) 0 15deg,
+      transparent 0 30deg
+    )
+    100%;
   border-radius: 100%;
 }
 
@@ -41,10 +45,13 @@
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 8px
+  gap: 8px;
+
+  a {
+    filter: var(--misaligned-effect);
+  }
 }
 
 .post {
-  background-color: var(--yellow);
   padding: 1rem;
 }
