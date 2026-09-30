@@ -10,7 +10,6 @@ export const setupEffectsController = (onUpdate) => {
   const getEffectsEnabled = () => localStorage.getItem('ui.effects') !== 'false'
   const toggleEffectsEnabled = () => {
     const to = !getEffectsEnabled()
-    console.log(to)
     localStorage.setItem('ui.effects', JSON.stringify(to))
     update()
   }
@@ -25,6 +24,13 @@ export const setupEffectsController = (onUpdate) => {
   }
 
   toggleButton.addEventListener('click', toggleEffectsEnabled)
+
+  let drawTimeout;
+  window.onresize = () => {
+    const timeout = 200
+    clearTimeout(drawTimeout)
+    drawTimeout = setTimeout(() => onUpdate(getEffectsEnabled()), timeout)
+  }
 
   update()
 }

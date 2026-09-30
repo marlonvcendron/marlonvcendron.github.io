@@ -107,11 +107,4 @@ const update = (enabled) => {
   ctx.putImageData(image, 0, 0);
 }
 
-let drawTimeout;
-window.onresize = () => {
-  const timeout = 200
-  clearTimeout(drawTimeout)
-  drawTimeout = setTimeout(update, timeout)
-}
-
 setupEffectsController(update)
