@@ -1,11 +1,14 @@
-footer {
+footer  {
+  border-top: 1px dashed var(--black);
+  margin-top: 1rem;
+}
+
+footer > section {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
   gap: 8px;
-  border-top: 1px dashed var(--black);
-  margin-top: 1rem;
 }
 
 #footer-box-container {
@@ -18,11 +21,6 @@ footer {
     height: var(--size);
   }
 }
-
-/* #footer-box {
-  background: repeating-conic-gradient(var(--black) 0 15deg, transparent 0 30deg) 100%;
-  border-radius: 100%;
-} */
 
 #footer-box-0 {
   background: linear-gradient(90deg, var(--black) 0 50%, transparent 0 100%) 0 /
