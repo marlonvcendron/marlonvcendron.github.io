@@ -3,10 +3,10 @@ header {
   margin-bottom: 1rem;
 }
 
-header > section {
+header nav {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  gap: 8px;
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
 }

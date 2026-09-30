@@ -23,6 +23,10 @@ body {
   line-height: 1.5;
   isolation: isolate; /* Isolates from canvas effect */
   position: relative;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 header > section,
@@ -30,6 +34,10 @@ main,
 footer > section {
   max-width: 50rem;
   margin: 0 auto;
+}
+
+main {
+  flex: 1;
 }
 
 a {

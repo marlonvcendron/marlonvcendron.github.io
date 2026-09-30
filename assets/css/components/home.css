@@ -7,21 +7,17 @@
 
   h1 {
     font-family: "Avone";
+    width: min-content;
     font-size: 5rem;
     word-spacing: 100vw;
     line-height: 1;
     font-weight: 100;
-    /* text-transform: uppercase; */
-
-    color: transparent;
 
     /* https://css-tricks.com/grainy-gradients/ */
-    background: linear-gradient(to bottom, #000000aa) 0 100% / 8rem 8rem,
-      url("static/svg/noise.svg");
-
+    background: linear-gradient(to bottom, #000000aa) 0 100% / 8rem 8rem, url("static/svg/noise.svg");
+    color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
-    width: min-content;
   }
 
   p {
@@ -33,11 +29,7 @@
   width: 32px;
   height: 32px;
   margin: 0 auto;
-  background: repeating-conic-gradient(
-      var(--black) 0 15deg,
-      transparent 0 30deg
-    )
-    100%;
+  background: repeating-conic-gradient( var(--black) 0 15deg, transparent 0 30deg) 100%;
   border-radius: 100%;
 }
 
