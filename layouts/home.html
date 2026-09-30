@@ -1,8 +1,8 @@
 {{ define "main" }}
 
-  <section id="intro">
+  <section id="intro" class="avoid-contrast">
     <h1 class="misaligned-effect">{{ .Site.Title }}</h1>
-    <p>{{ .Content }}</p>
+    {{ .Content }}
   </section>
 
   <div id="home-separator" class="misaligned-effect"></div>
@@ -16,7 +16,7 @@
             <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="">
           {{ end }}
         {{ end }}
-        {{ .Summary }}
+        <p>{{ .Params.Summary }}</p>
       </section>
     {{ end }}
   </section>

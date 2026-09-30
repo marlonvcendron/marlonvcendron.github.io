@@ -14,7 +14,8 @@
     font-weight: 100;
 
     /* https://css-tricks.com/grainy-gradients/ */
-    background: linear-gradient(to bottom, #000000aa) 0 100% / 8rem 8rem, url("static/svg/noise.svg");
+    background: linear-gradient(to bottom, #000000aa) 0 100% / 8rem 8rem,
+      url("static/svg/noise.svg");
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
@@ -29,7 +30,7 @@
   width: 32px;
   height: 32px;
   margin: 0 auto;
-  background: repeating-conic-gradient( var(--black) 0 15deg, transparent 0 30deg) 100%;
+  background: repeating-conic-gradient(var(--black) 0 15deg, transparent 0 30deg) 100%;
   border-radius: 100%;
 }
 
@@ -44,6 +45,3 @@
   }
 }
 
-.post {
-  padding: 1rem;
-}

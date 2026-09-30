@@ -14,8 +14,7 @@ body {
 }
 
 body {
-  background-image: url("static/img/texture.jpg");
-  background-color: var(--warm-white);
+  background: var(--background);
   background-blend-mode: multiply;
 
   color: #222;
@@ -27,12 +26,14 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 header > section,
 main,
 footer > section {
-  max-width: 50rem;
+  min-width: var(--max-width);
+  max-width: var(--max-width);
   margin: 0 auto;
 }
 
@@ -50,16 +51,31 @@ h1 {
   margin: 2rem 0;
 }
 
-p {
-  /* TODO: maybe make as shadow, instead of coloring the text? */
-  /* color: transparent;
-  background:
-    linear-gradient(180deg, transparent 16%, var(--cyan) 18% 30%, transparent 32%) 0 -100%,
-    linear-gradient(180deg, transparent 66%, var(--yellow) 68% 76%, transparent 78%) 0 -100%,
-    linear-gradient(180deg, transparent 85%, var(--magenta) 86% 91%, transparent 93%) 0 -100%,
-    radial-gradient(circle, transparent 0 1px, var(--black) 1px) 0 0 / 5px 5px,
-    radial-gradient(circle, transparent 0 2px, var(--black) 2px) 0 0 / 3px 4px,
-    radial-gradient(circle, transparent 0 5px, var(--black) 5px) 0 0 / 2px 2px;
-  -webkit-background-clip: text;
-  background-clip: text; */
+img {
+  max-width: var(--max-width);
 }
+
+p:not(.avoid-contrast p):not(:has(img)), time {
+  background: var(--background);
+  background-blend-mode: multiply;
+  position: relative;
+
+  margin: 0 -100vw;
+  padding: 0 100vw;
+  max-width: var(--max-width);
+  z-index: 19;
+}
+
+
+
+/* TODO: maybe make as shadow, instead of coloring the text? */
+/* color: transparent;
+background:
+  linear-gradient(180deg, transparent 16%, var(--cyan) 18% 30%, transparent 32%) 0 -100%,
+  linear-gradient(180deg, transparent 66%, var(--yellow) 68% 76%, transparent 78%) 0 -100%,
+  linear-gradient(180deg, transparent 85%, var(--magenta) 86% 91%, transparent 93%) 0 -100%,
+  radial-gradient(circle, transparent 0 1px, var(--black) 1px) 0 0 / 5px 5px,
+  radial-gradient(circle, transparent 0 2px, var(--black) 2px) 0 0 / 3px 4px,
+  radial-gradient(circle, transparent 0 5px, var(--black) 5px) 0 0 / 2px 2px;
+-webkit-background-clip: text;
+background-clip: text; */

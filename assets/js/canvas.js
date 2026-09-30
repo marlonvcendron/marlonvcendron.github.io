@@ -4,12 +4,12 @@ import { setupEffectsController } from './effectsController'
 
 noise.seed(2666)
 
-const N_BANDS = 10
 const MAX_BAND_SIZE = 40
 
 const getWidthAndHeight = () => [document.documentElement.scrollWidth, document.documentElement.scrollHeight]
 
 let [width, height] = getWidthAndHeight()
+let n_bands = 10
 
 const canvas = document.getElementById('canvas')
 const ctx = canvas.getContext('2d')
@@ -71,11 +71,7 @@ class Band {
   #randomColor = () => CMAP[randomUInt({ limit: N_COLORS - 1, rand: this.#randomByIndex('color') })]
 
   #randomTone = (x, y) => {
-    // const rand = getConsistentRand('tone', [this.index, Math.round(r*1)])
-    // const tone_index = randomUInt({ limit: N_TONES - 1, rand})
     const tone_index = Math.round(((noise.simplex2(x / 10, y / 10) + 1) / 2) * (N_TONES - 1))
-    // if(x+y  % 20) console.log(tone_index)
-
     return COLORS[this.color][tone_index]
   }
 
@@ -86,7 +82,7 @@ const drawImage = () => {
   const imageData = ctx.createImageData(width, height)
   const view = new DataView(imageData.data.buffer)
 
-  const bands = Array.from({ length: N_BANDS }, (_, i) => new Band(i))
+  const bands = Array.from({ length: n_bands }, (_, i) => new Band(i))
   for (const band of bands) {
     band.draw(view)
   }
@@ -100,6 +96,7 @@ const update = (enabled) => {
 
   const [newWidth, newHeight] = getWidthAndHeight()
   width = newWidth; height = newHeight
+  n_bands = Math.round(height / 140)
   canvas.setAttribute('width', width);
   canvas.setAttribute('height', height);
 
