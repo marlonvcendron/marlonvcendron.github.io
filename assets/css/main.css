@@ -19,6 +19,7 @@ body {
 
   color: #222;
   font-family: "Menlo";
+  font-size: 1rem;
   line-height: 1.5;
   isolation: isolate; /* Isolates from canvas effect */
   position: relative;
@@ -55,7 +56,8 @@ img {
   max-width: var(--max-width);
 }
 
-p:not(.avoid-contrast p):not(:has(img)), time {
+p:not(.avoid-contrast p):not(:has(img)),
+time {
   background: var(--background);
   background-blend-mode: multiply;
   position: relative;
@@ -66,16 +68,23 @@ p:not(.avoid-contrast p):not(:has(img)), time {
   z-index: 19;
 }
 
+@media (max-width: 768px) {
+  header > section,
+  main,
+  footer > section {
+    min-width: 100dvw !important;
+    max-width: 100dvw !important;
+  }
 
+  img,
+  p,
+  time {
+    max-width: 100dvw !important;
+  }
 
-/* TODO: maybe make as shadow, instead of coloring the text? */
-/* color: transparent;
-background:
-  linear-gradient(180deg, transparent 16%, var(--cyan) 18% 30%, transparent 32%) 0 -100%,
-  linear-gradient(180deg, transparent 66%, var(--yellow) 68% 76%, transparent 78%) 0 -100%,
-  linear-gradient(180deg, transparent 85%, var(--magenta) 86% 91%, transparent 93%) 0 -100%,
-  radial-gradient(circle, transparent 0 1px, var(--black) 1px) 0 0 / 5px 5px,
-  radial-gradient(circle, transparent 0 2px, var(--black) 2px) 0 0 / 3px 4px,
-  radial-gradient(circle, transparent 0 5px, var(--black) 5px) 0 0 / 2px 2px;
--webkit-background-clip: text;
-background-clip: text; */
+  main {
+    padding: 0 1rem;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+}

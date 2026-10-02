@@ -14,28 +14,26 @@
     font-weight: 100;
 
     /* https://css-tricks.com/grainy-gradients/ */
-    background: linear-gradient(to bottom, #000000aa) 0 100% / 8rem 8rem,
+    background: linear-gradient(to bottom, #000000bb) 0 100% / 8rem 8rem,
       url("static/svg/noise.svg");
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
   }
 
-  p {
-    margin: 3rem 0;
-  }
+  h1 { margin: 0}
+  p { margin: 1rem 0; }
 }
 
 #home-separator {
   width: 32px;
   height: 32px;
-  margin: 0 auto;
+  margin: 2rem auto;
   background: repeating-conic-gradient(var(--black) 0 15deg, transparent 0 30deg) 100%;
   border-radius: 100%;
 }
 
 #posts {
-  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -45,3 +43,29 @@
   }
 }
 
+.post {
+  h2 {
+    margin-top: 0;
+  }
+}
+
+
+@media (max-width: 768px) {
+  #intro {
+    flex-direction: column;
+
+    h1 {
+      font-size: 4rem;
+    }
+    p {
+      margin-top: 0;
+
+      background: var(--background);
+      background-blend-mode: multiply;
+      position: relative;
+      margin: 0 -100vw;
+      padding: 0 100vw;
+      z-index: 19;
+    }
+  }
+}
